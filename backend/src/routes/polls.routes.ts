@@ -8,7 +8,7 @@ const createSuveryRepository = new CreateSuveryRepository();
 
 // Criar Enequete
 createSuveryRouter.post('/', (request, response) => {
-  const { name, options, date } = request.body;
+  const { poll_name, start_date, end_date, status, created_at, updated_at, date} = request.body;
 
   const parsedDate = startOfHour(parseISO(date));
 
@@ -17,9 +17,10 @@ createSuveryRouter.post('/', (request, response) => {
    */
 
   const createSuvery = createSuveryRepository.create({
-    name, 
-    options, 
-    date: parsedDate,
+    poll_name, 
+    start_date,
+    end_date,
+    status,
   });
   
   return response.json(createSuvery);

@@ -1,9 +1,10 @@
-import CreateSuvery from '../models/CreateSuvery';
+import CreateSuvery from '../models/Polls';
 
 interface CreateSuveryDTO {
-  name: string;
-  options: string;
-  date: Date;
+  poll_name: string;
+  start_date: Date;
+  end_date: Date;
+  status: boolean;
 }
 
 class CreateSuveryRepository {
@@ -14,8 +15,8 @@ class CreateSuveryRepository {
   }
 
   // CRIAR ENQUETE
-  public create({ name, options, date }: CreateSuveryDTO ): CreateSuvery {
-    const createSuvery = new CreateSuvery({ name, options, date });
+  public create({ poll_name, start_date, end_date, status }: CreateSuveryDTO ): CreateSuvery {
+    const createSuvery = new CreateSuvery({ poll_name, start_date, end_date, status });
 
     this.createSuverys.push(createSuvery);
 

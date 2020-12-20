@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import Polls from './Polls';
 
 @Entity('polls_options')
 class CreateSuvery {
@@ -13,6 +14,10 @@ class CreateSuvery {
 
   @Column('time with time zone')
   date: Date;
+
+  @ManyToOne(() => Polls, polls => polls.id)
+  @JoinColumn({ name: 'polls_id'})
+  poll: Polls;
 }
 
 export default CreateSuvery;

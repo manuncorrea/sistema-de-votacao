@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
+import PollsOptions from './Polls_options';
 
 @Entity('polls')
 class Polls {
@@ -22,6 +23,10 @@ class Polls {
 
   @Column('time with time zone')
   updated_at: Date;
+
+  @OneToMany(() => PollsOptions, pollsOptions => pollsOptions.id)
+  @JoinColumn( {name: 'id' })
+  questions: PollsOptions;
 
 }
 
