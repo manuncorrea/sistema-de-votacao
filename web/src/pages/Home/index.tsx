@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import Input from '../../components/Input';
 
 import { Container, Title, Formulario, ButtonPlus, Button } from './styles';
 
 const Home: React.FC = () => {
+  const [options, setOptions] = useState([{name: "Opção" }]);
+
+  const [stack, setStack ] = useState(1) 
+  function newOption() {
+    setOptions([
+      ...options, {name: "Opção"}
+     
+    ])
+    setStack(stack + 1)
+  }
+
+  function upDate(positon: number, value: string) {
+    const optionUpdate = options.map((option, index) => {
+      if(index === positon){
+        return{
+          name : value
+        }
+      }else{
+        return option;
+      }
+    })
+      setOptions(optionUpdate)
+      console.log(options)
+  }
+
   return(
     <>
       <Container>
@@ -12,15 +37,18 @@ const Home: React.FC = () => {
 
         <Formulario>
          
-          <Input name="Title" placeholder="Title da enquete" />
-          
-          <Input name="Opção" placeholder="Opção 01" />
-          <Input name="Opção" placeholder="Opção 02" />
-          <Input name="Opção" placeholder="Opção 03" />
-         
-
-          <ButtonPlus>
-            <FiPlus />
+          <Input name="Title" placeholder="Titulo da enquete" />
+          { options.map((option, index) => {
+            return(
+              <Input name={option.name} placeholder={`Opcao${index + 1}`} onChange={(event) => {
+                upDate(index, event.target.value)
+              }}/>
+            )
+          })}
+      
+        
+          <ButtonPlus onClick={newOption} disabled={stack === 4}>
+            <FiPlus  />
           </ButtonPlus>
 
           <Button>Cadastrar</Button>

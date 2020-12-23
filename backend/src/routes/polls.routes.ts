@@ -28,9 +28,9 @@ createSuveryRouter.post('/', (request, response) => {
 
 // Listar enquetes
 createSuveryRouter.get('/', (request, response) => {
-  const createSuvery = createSuveryRepository.all();
+  //const createSuvery = createSuveryRepository.all();
 
-  return response.json(createSuvery);
+  //return response.json(createSuvery);
 });
 
 // Editar enquetes

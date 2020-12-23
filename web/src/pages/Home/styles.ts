@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.section`
   display: flex;
@@ -35,6 +36,10 @@ export const ButtonPlus = styled.button`
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
+
+  &:hover{
+    background: ${shade(0.2, '#1da1f2')}
+  }
 `;
 
 export const Button = styled.button`
@@ -46,6 +51,10 @@ export const Button = styled.button`
   border-radius: 25px;
   margin: auto;
   padding: 7px;
+
+  &:hover{
+    background: ${shade(0.2, '#1da1f2')}
+  }
 `;
 
 

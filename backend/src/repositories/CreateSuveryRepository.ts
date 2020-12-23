@@ -1,41 +1,44 @@
-import CreateSuvery from '../models/Polls';
+import CreatePolls from '../models/Polls';
+import { getCustomRepository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
+import { startOfHour } from 'date-fns';
 
-interface CreateSuveryDTO {
-  poll_name: string;
-  start_date: Date;
-  end_date: Date;
-  status: boolean;
+@EntityRepository(CreatePolls)
+class CreatePollsRepository extends Repository<CreatePolls> {
+  public async findByDate(date: Date): Promise<CreatePolls | null> {
+    const findCreatePolls = await this.findOne({
+      where: { date },
+    })
+
+    return findCreatePolls || null;
+  }
+  
+  
 }
 
-class CreateSuveryRepository {
-  private createSuverys: CreateSuvery[];
+export default CreatePollsRepository;
 
-  constructor() {
-    this.createSuverys = [];
-  }
+/**
+ * // CRIAR ENQUETE
+  public create({ poll_name, start_date, end_date }: CreatePollsDTO ): CreatePolls {
+    const createPolls = new CreatePolls({ poll_name, start_date, end_date});
 
-  // CRIAR ENQUETE
-  public create({ poll_name, start_date, end_date, status }: CreateSuveryDTO ): CreateSuvery {
-    const createSuvery = new CreateSuvery({ poll_name, start_date, end_date, status });
+    this.createPolls.push(createPolls);
 
-    this.createSuverys.push(createSuvery);
-
-    return createSuvery;
+    return createPolls;
 
   }
 
   //LISTAR TODAS AS ENQUETES
-  public all(): CreateSuvery[] {
-    return this.createSuverys;
+  public all(): CreatePolls[] {
+    return this.createPolls;
   }
 
   // DELETAR ENQUETE
   public delete(id: string) {
-    const index = this.createSuverys.findIndex(vote => vote.id === id)
+    const index = this.createPolls.findIndex(vote => vote.id === id)
 
-    this.createSuverys.splice(index, 1);
+    this.createPolls.splice(index, 1);
   
   }
-}
-
-export default CreateSuveryRepository;
+ */
