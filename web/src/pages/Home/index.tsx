@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 import Input from '../../components/Input';
+import Time from '../../components/Time';
 
 import { Container, Title, Formulario, ButtonPlus, Button } from './styles';
 
@@ -51,7 +52,10 @@ const Home: React.FC = () => {
             <FiPlus  />
           </ButtonPlus>
 
+          <Time />
+
           <Button>Cadastrar</Button>
+
         </Formulario>
       </Container>
     </>

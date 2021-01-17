@@ -19,7 +19,7 @@ export const Formulario = styled.div`
   margin: 20px 0;
   background-color: #15202b;
   color: #232f39;
-  padding: 30px 35px;
+  padding: 50px 60px;
   border-radius: 5px;
   border: 2px solid #232f39;
 `;
